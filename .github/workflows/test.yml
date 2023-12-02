@@ -9,7 +9,7 @@ jobs:
     strategy:
       matrix:
         os: [windows-latest, macos-latest, ubuntu-latest]
-        python-version: [3.11 , 3.8] 
+        python-version: [3.11] 
 
     steps:
       - name : Checkout repo 
@@ -24,6 +24,8 @@ jobs:
         with : 
           python-version :  ${{ matrix.python-version }}
           requirements-file : "requirements.txt"
+          requirements: "django"
+          constraints: "django>=4.0.0"
           run-command : "python script.py"
 
 
