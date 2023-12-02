@@ -13,7 +13,6 @@ inputs:
 
 runs:
   using: "composite"
-  shell: bash 
   steps:
     - name : setup python virtual env 
       uses: actions/setup-python@v4.7.1
@@ -26,4 +25,5 @@ runs:
         source venv/bin/activate
         pip install -r ${{inputs.requirements_file}} 
         ${{ inputs.run_command}} 
+      shell : bash 
 
