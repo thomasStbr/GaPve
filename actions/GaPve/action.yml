@@ -34,7 +34,7 @@ runs:
         if [ -f venv/bin/activate ]; then
           source venv/bin/activate  
         else # on windows 
-          .\venv\Scripts\activate
+          .\\venv\\Scripts\\activate
         fi
 
         if [ -n "${{ inputs.requirements-file }}" ]; then
