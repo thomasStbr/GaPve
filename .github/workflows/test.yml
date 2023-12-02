@@ -4,20 +4,25 @@ on : push
 
 jobs: 
   build: 
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [windows-latest, macos-latest, ubuntu-latest]
+        python-version: [3.11 , 3.8] 
 
     steps:
       - name : Checkout repo 
         uses : actions/checkout@v4.1.1
       
-      - name: Print current folder
-        run: |
-          echo "Current folder: $(pwd)"
+      # - name: Print current folder
+      #   run: |
+      #     echo "Current folder: $(pwd)"
 
       - name : test script 
         uses : ./actions/GaPve
         with : 
-          python-version : "3.11"
+          python-version :  ${{ matrix.python-version }}
           requirements-file : "requirements.txt"
           run-command : "python script.py"
 
