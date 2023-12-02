@@ -6,7 +6,16 @@ inputs:
     required: true
   requirements-file: 
     description: 'Path to requierement file'
-    required: true
+    required: false 
+  contraints-file:
+    description : "Path to constrain file"
+    required: false 
+  requirements:
+    description: "Specific requirements"
+    required : false 
+  constraints: 
+    description: "Specific constrains"
+    required: false 
   run-command: 
     description: "Command to run"
     required: true 
@@ -19,11 +28,26 @@ runs:
       with:
         python-version: ${{ inputs.python-version }}
 
-    - name : install Dependencies and run 
-      run : | 
+    - name: 'Install Dependencies and run'
+      run: | 
         python -m venv venv
         source venv/bin/activate
-        pip install -r ${{inputs.requirements-file}} 
-        eval ${{ inputs.run-command}} 
-      shell : bash 
 
+        if [ -n "${{ inputs.requirements-file }}" ]; then
+          pip install -r "${{ inputs.requirements-file }}"
+        fi
+
+        if [ -n "${{ inputs.constraints-file }}" ]; then
+          pip install -c "${{ inputs.constraints-file }}"
+        fi
+
+        if [ -n "${{ inputs.requirements }}" ]; then
+          pip install ${{ inputs.requirements }}
+        fi
+
+        if [ -n "${{ inputs.constraints }}" ]; then
+          pip install -c ${{ inputs.constraints }}
+        fi
+
+        eval "${{ inputs.run-command }}"
+      shell: bash
