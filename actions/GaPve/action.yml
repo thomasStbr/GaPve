@@ -38,24 +38,27 @@ runs:
         fi
       shell: bash
     
-    - name: "Install dependencies"
-      run : |
-          if [ -n "${{ inputs.requirements-file }}" ] && [ -n "${{ inputs.constraints-file }}" ]; then
-            pip install -r "${{ inputs.requirements-file }}" -c "${{ inputs.constraints-file }}"
-          elif [ -n "${{ inputs.requirements-file }}" ]; then
-            pip install -r "${{ inputs.requirements-file }}"
-      shell : bash 
-    
-    - name : "Install manual dependencies"
-      run : | 
-         if [ -n "${{ inputs.requirements }}" ] && [ -n "${{ inputs.constraints }}" ]; then
-            echo "${{ inputs.requirements }}" > requirements.txt
-            echo "${{ inputs.constraints }}" > constraints.txt
-            pip install -r requirements.txt -c constraints.txt
-          elif [ -n "${{ inputs.requirements }}" ]; then
-            echo "${{ inputs.requirements }}" > requirements.txt
-            pip install -r requirements.txt
-      shell : bash 
+
+    - name: Install dependencies
+      run: |
+        if [ -n "${{ inputs.requirements-file }}" ] && [ -n "${{ inputs.constraints-file }}" ]; then
+          pip install -r "${{ inputs.requirements-file }}" -c "${{ inputs.constraints-file }}"
+        elif [ -n "${{ inputs.requirements-file }}" ]; then
+          pip install -r "${{ inputs.requirements-file }}"
+        fi
+      shell: bash
+
+    - name: Install manual dependencies
+      run: |
+        if [ -n "${{ inputs.requirements }}" ] && [ -n "${{ inputs.constraints }}" ]; then
+          echo "${{ inputs.requirements }}" > requirements.txt
+          echo "${{ inputs.constraints }}" > constraints.txt
+          pip install -r requirements.txt -c constraints.txt
+        elif [ -n "${{ inputs.requirements }}" ]; then
+          echo "${{ inputs.requirements }}" > requirements.txt
+          pip install -r requirements.txt
+        fi
+      shell: bash
 
     - name : "Run commands" 
       run :  eval "${{ inputs.run-command }}"
