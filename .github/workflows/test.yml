@@ -24,6 +24,7 @@ jobs:
         with : 
           python-version :  ${{ matrix.python-version }}
           requirements-file : "requirements.txt"
+          constraints-file : "constraints.txt"
           requirements: "django"
           constraints: "django>=4.0.0"
           run-command : "python script.py"
