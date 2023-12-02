@@ -24,6 +24,6 @@ runs:
         python -m venv venv
         source venv/bin/activate
         pip install -r ${{inputs.requirements-file}} 
-        ${{ inputs.run-command}} 
+        eval ${{ inputs.run-command}} 
       shell : bash 
 
