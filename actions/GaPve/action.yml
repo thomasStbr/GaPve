@@ -31,7 +31,11 @@ runs:
     - name: 'Install Dependencies and run'
       run: | 
         python -m venv venv
-        source venv/bin/activate
+        if [ -f venv/bin/activate ]; then
+          source venv/bin/activate  
+        else # on windows 
+          .\venv\Scripts\activate
+        fi
 
         if [ -n "${{ inputs.requirements-file }}" ]; then
           pip install -r "${{ inputs.requirements-file }}"
