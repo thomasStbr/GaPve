@@ -15,7 +15,7 @@ jobs:
           echo "Current folder: $(pwd)"
 
       - name : test script 
-        uses : ./actions/action.yml
+        uses : ./actions/GaPve
         with : 
           python-version : "3.11"
           requirements-file : "requirements.txt"
