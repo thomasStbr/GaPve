@@ -7,7 +7,7 @@ inputs:
   requirements-file: 
     description: 'Path to requierement file'
     required: false 
-  contraints-file:
+  constraints-file:
     description : "Path to constrain file"
     required: false 
   requirements:
