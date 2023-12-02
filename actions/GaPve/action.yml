@@ -37,27 +37,27 @@ runs:
           .\\venv\\Scripts\\activate
         fi
       shell: bash
-  
-  - name: "Install dependencies"
-    run : |
-        if [ -n "${{ inputs.requirements-file }}" ]; then
-            pip install -r "${{ inputs.requirements-file }}"
-          fi
+    
+    - name: "Install dependencies"
+      run : |
+          if [ -n "${{ inputs.requirements-file }}" ]; then
+              pip install -r "${{ inputs.requirements-file }}"
+            fi
 
-          if [ -n "${{ inputs.constraints-file }}" ]; then
-            pip install -c "${{ inputs.constraints-file }}"
-          fi
+            if [ -n "${{ inputs.constraints-file }}" ]; then
+              pip install -c "${{ inputs.constraints-file }}"
+            fi
 
-          if [ -n "${{ inputs.requirements }}" ]; then
-            pip install ${{ inputs.requirements }}
-          fi
+            if [ -n "${{ inputs.requirements }}" ]; then
+              pip install ${{ inputs.requirements }}
+            fi
 
-          if [ -n "${{ inputs.constraints }}" ]; then
-            pip install  ${{ inputs.constraints }}
-          fi
-    shell : bash 
+            if [ -n "${{ inputs.constraints }}" ]; then
+              pip install  ${{ inputs.constraints }}
+            fi
+      shell : bash 
 
-  - name : "Run commands" 
-    run :  eval "${{ inputs.run-command }}"
-    shell : bash 
+    - name : "Run commands" 
+      run :  eval "${{ inputs.run-command }}"
+      shell : bash 
 
