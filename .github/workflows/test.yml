@@ -1,0 +1,27 @@
+name : test script 
+
+on : push
+
+jobs: 
+  build: 
+    runs-on: ubuntu-latest
+
+    steps:
+      - name : Checkout repo 
+        uses : actions/checkout@v4.1.1
+      
+      - name: Print current folder
+        run: |
+          echo "Current folder: $(pwd)"
+
+      - name : test script 
+        uses : ./actions/action
+        with : 
+          python-version : "3.11"
+          requirements-file : "requirements.txt"
+          run : "python script.py"
+
+
+
+
+

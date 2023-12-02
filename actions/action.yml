@@ -1,0 +1,15 @@
+name: 'GaPve'
+description: 'Create Python virtual environement'
+inputs:
+  python-version: 
+    description: 'Python version for the virtual environement'
+    required: true
+  requirements-file: 
+    description: 'Path to requierement file'
+    required: true
+
+runs:
+  using: "composite"
+  # steps:
+  #   - run: goodbye.sh
+  #     shell: bash
