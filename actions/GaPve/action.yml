@@ -46,7 +46,7 @@ runs:
         fi
 
         if [ -n "${{ inputs.constraints }}" ]; then
-          pip install -c ${{ inputs.constraints }}
+          pip install  ${{ inputs.constraints }}
         fi
 
         eval "${{ inputs.run-command }}"
