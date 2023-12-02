@@ -19,7 +19,7 @@ jobs:
         with : 
           python-version : "3.11"
           requirements-file : "requirements.txt"
-          run : "python script.py"
+          run-command : "python script.py"
 
 
 
