@@ -23,7 +23,7 @@ runs:
       run : | 
         python -m venv venv
         source venv/bin/activate
-        pip install -r ${{inputs.requirements_file}} 
+        pip install -r ${{inputs.requirements-file}} 
         ${{ inputs.run_command}} 
       shell : bash 
 
